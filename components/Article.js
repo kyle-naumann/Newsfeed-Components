@@ -94,6 +94,58 @@ const data = [
   Your component is a function that takes an article object as its only argument,
   and returns a DOM node looking like the one below:
 
+*/
+function ArticleMaker(article){
+
+  let div = document.createElement('div')
+div.classList.add('article')
+
+  let h2 = document.createElement('h2')
+    h2.textContent = article.title
+    div.append(h2)
+
+  let date = document.createElement('p')
+    date.classList.add('date')
+    date.textContent = article.date
+    div.append(date)
+
+  let p1 = document.createElement('p')
+    p1.textContent = article.firstParagraph
+
+  let p2 = document.createElement('p')
+    p2.textContent = article.secondParagraph
+
+  let p3 = document.createElement('p')
+    p3.textContent = article.thirdParagraph
+    div.append(p1, p2, p3)
+
+  let span = document.createElement('span')
+    span.classList.add('span')
+    span.textContent = 'BANANA +';
+    div.append(span)
+    span.addEventListener('click', e => 
+    div.classList.toggle(e, "article-open"))
+
+return div
+}
+
+const articles = document.querySelector(".articles")
+console.log(articles)
+
+data.push({
+  title: "If I Only Had a Brain",
+  date:"1918",
+  firstParagraph:"Follow the yellow brick road.",
+  secondParagraph:"follow the yellow brick road.",
+  thirdParagraph: "follow follow follow follow follow the yellow brick road."
+})
+
+data.forEach(item => {
+  articles.append(ArticleMaker(item))
+})
+
+/*
+
   <div class="article">
     <h2>{title of the article}</h2>
     <p class="date">{date of the article}</p>
